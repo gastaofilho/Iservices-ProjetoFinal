@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { UserContext, UserProvider } from "../../providers/UserContext";
+import { UserContext } from "../../providers/UserContext";
+import { UserDashboardProvider } from "../../providers/UserDashboardContext";
 
 export const ProtectedRoutes = () => {
   const { user } = useContext(UserContext);
 
   return user ? (
-    <UserProvider>
+    <UserDashboardProvider>
       <Outlet />
-    </UserProvider>
+    </UserDashboardProvider>
     
   ) : (
     <Navigate to="/" />
