@@ -22,9 +22,15 @@ export const RegisterForm = () => {
       <Input type='email' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
       <Input type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
       <Input type='password' placeholder='Digite novamente sua senha' {...register("confirm")} disabled={loading} error={errors.confirm} />
+      <Input type='zipcode' placeholder='Digite seu código' {...register("zipcode")} disabled={loading} error={errors.zipcode} />
+      <select>
+        <option value="costumer">Contratante</option>
+        <option value="professional">Profissional</option>
+      </select>
       <button type='submit' disabled={loading} >
         {loading ? "Cadastrando..." : "Cadastrar"}
       </button>
     </form>
   )
+  
 };
