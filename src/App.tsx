@@ -1,16 +1,16 @@
-import { UserDashboardPage } from "./pages/UserDashboardPage";
-import { extendTheme, ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
+import { UserProvider } from "./providers/UserContext";
+import Router from './routes';
 
-function App() {
-
-  const theme = extendTheme({ colors })
+export const App = () => {
 
   return (
-    // <h1>Projeto Final</h1>
-    <ChakraProvider theme={theme}>
-      <UserDashboardPage />
+    <ChakraProvider>
+      <UserProvider>
+        <Router />
+      </UserProvider>
     </ChakraProvider>
   );
 }
 
-export default App;
+
