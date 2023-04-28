@@ -9,6 +9,8 @@ export const registerFormSchema = z.object({
     .regex(/(?=.*?[A-Z])/, "É necessário pelo menos uma letra maiúscula")
     .regex(/(?=.*?[a-z])/, "É necessário pelo menos uma letra minúscula"),
     confirm: z.string().nonempty("É obrigatório confirmar a senha"),
+    zipcode: z.string().nonempty("É obrigatório seu CEP")
+    .regex(/^[0-9]{5}-[0-9]{3}$/, "É necessário formato XXXXX-XXX"),
 }).refine(({password, confirm}) => password === confirm, {
     message: "Os campos de senha e confirmação devem ser iguais.",
     path: ["confirm"],
