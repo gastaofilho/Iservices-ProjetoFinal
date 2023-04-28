@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { ShopProvider } from "../../providers/ShopContext";
-import { UserContext } from "../../providers/UserContext";
+import { UserContext, UserProvider } from "../../providers/UserContext";
 
 export const ProtectedRoutes = () => {
   const { user } = useContext(UserContext);
 
   return user ? (
-    <ShopProvider>
+    <UserProvider>
       <Outlet />
-    </ShopProvider>
+    </UserProvider>
+    
   ) : (
     <Navigate to="/" />
   );
