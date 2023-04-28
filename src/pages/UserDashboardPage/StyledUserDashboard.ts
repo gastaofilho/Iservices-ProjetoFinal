@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledUserDashboard = styled.div`
+export const StyledUserDashboard = styled.div`
 header{
   display: flex;
   width: 100%;
