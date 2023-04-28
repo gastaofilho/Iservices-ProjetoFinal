@@ -6,7 +6,7 @@ import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { UserDashboardPage } from "./pages/UserDashboardPage";
 import { ProfessionalDashboardPage } from "./pages/ProfessionalDashboardPage";
 
-const Router = () => {
+export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
@@ -17,10 +17,8 @@ const Router = () => {
       <Route path="/professional_dashboard" element={<ProtectedRoutes />}>
         <Route index element={<ProfessionalDashboardPage />} />
       </Route>
-
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
 
-export default Router;

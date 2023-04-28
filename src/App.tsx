@@ -1,15 +1,14 @@
-import { ChakraProvider } from '@chakra-ui/react'
 import { UserProvider } from "./providers/UserContext";
-import Router from './routes';
+import { Router } from "./Route";
 
 export const App = () => {
 
   return (
-    <ChakraProvider>
+
       <UserProvider>
         <Router />
       </UserProvider>
-    </ChakraProvider>
+
   );
 }
 
