@@ -1,6 +1,6 @@
 import { StyledNotFound } from "./notFound";
 import imgNotFound from "../../assets/not_found.png";
-import LogoImg from "../../assets/LogoKenzieBurguer.svg";
+import LogoImg from "../../assets/logo.png";
 export const NotFoundPage = () => {
   return (
     <>
