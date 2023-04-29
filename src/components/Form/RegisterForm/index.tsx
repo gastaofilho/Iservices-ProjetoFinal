@@ -13,6 +13,8 @@ export const RegisterForm = () => {
   });
 
   const submit:SubmitHandler<TRegisterFormValues> = (formData) => {
+    console.log(formData);
+    
     userRegister(formData, setLoading)
             
   }
@@ -22,8 +24,8 @@ export const RegisterForm = () => {
       <Input type='email' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
       <Input type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
       <Input type='password' placeholder='Digite novamente sua senha' {...register("confirm")} disabled={loading} error={errors.confirm} />
-      <Input type='zipcode' placeholder='Digite seu código' {...register("zipcode")} disabled={loading} error={errors.zipcode} />
-      <select>
+      <Input type='text' placeholder='Digite seu código' {...register("zipcode")} disabled={loading} error={errors.zipcode} />
+      <select {...register("userType")}>
         <option value="costumer">Contratante</option>
         <option value="professional">Profissional</option>
       </select>
