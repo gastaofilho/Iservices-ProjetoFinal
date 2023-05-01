@@ -5,7 +5,6 @@ import { UserBar } from "../../components/UserBar";
 import { DivServices } from "../../components/DivServices";
 import { ProfessionalUlList } from "../../components/ProfessionalUlList";
 
-
 // interface IProfessional{
 //   professionalName: string;
 //   professionalJob: string;

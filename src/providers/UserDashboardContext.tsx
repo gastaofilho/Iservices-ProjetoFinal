@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { api } from "../services/api";
 
 interface IUserDashboardProviderProps{
     children: React.ReactNode;
@@ -11,9 +12,10 @@ interface IUserDashboardContext{
 }
 
 interface IProfessional{
-  professionalName: string;
-  professionalJob: string;
-  professionalContactType: string;
+  name: string;
+  userType: string;
+  userJob: string;
+  contact: string;
   id: number;
 }
 
@@ -24,15 +26,15 @@ export const UserDashboardProvider = ({children}: IUserDashboardProviderProps) =
 
     useEffect(() => {
         const loadProfessionalList = async () => {
-          //const token = localStorage.getItem("@hamburgueria:TOKEN");
+          const token = localStorage.getItem("TOKEN");
           try {
-            
-            // const { data } = await api.get<IProfessional[]>(`/products`, {
-            //   headers: {
-            //     Authorization: `Bearer ${token}`,
-            //   },
-            // });
-            // setProfessionalList(data);
+            const { data } = await api.get<IProfessional[]>(`/users`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            data.filter((professional) => professional.userType === "professional")
+            setProfessionalList(data.filter((professional) => professional.userType === "professional"));
           } catch (error) {
             toast.error("Token inválido");
           }
@@ -41,7 +43,7 @@ export const UserDashboardProvider = ({children}: IUserDashboardProviderProps) =
       }, []);
     
         return(
-            <UserDashboardContext.Provider value={{ professionalList, setProfessionalList  }}>
+            <UserDashboardContext.Provider value={{ professionalList, setProfessionalList }}>
                 {children}
             </UserDashboardContext.Provider>
         )
