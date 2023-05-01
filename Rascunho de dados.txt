@@ -1,0 +1,55 @@
+{
+	"name": "Ademir",
+	"email": "ademir@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-564",
+	"userType": "customer"
+}
+
+{
+	"name": "José",
+	"email": "jose@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-564",
+	"userType": "customer"
+}
+
+{
+	"name": "José da Silva",
+	"email": "josesilva@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-123",
+	"userType": "professional",
+	"userJob": "Pedreiro",
+	"contact": "Celular (15) 99506-6543"
+}
+
+{
+	"name": "Sérgio Melo",
+	"email": "sergio@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-446",
+	"userType": "professional",
+	"userJob": "Eletricista",
+	"contact": "WhatsApp (15) 95478-4523"
+}
+
+{
+	"name": "Antônio Mendonça",
+	"email": "antonio@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-789",
+	"userType": "professional",
+	"userJob": "Pintor",
+	"contact": "WhatsApp (15) 99805-1234"
+}
+
+{
+	"name": "Maria Souza",
+	"email": "maria@mail.com",
+	"password": "@12Patos",
+	"zipcode": "11492-023",
+	"userType": "professional",
+	"userJob": "Diarista",
+	"contact": "Celular (15) 99506-6543"
+}
