@@ -1,22 +1,28 @@
-import { professionalList } from "./ProfessionalList";
+import { Flex } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
+import { Main } from "../../components/Main";
+import { UserBar } from "../../components/UserBar";
+import { DivServices } from "../../components/DivServices";
+import { ProfessionalUlList } from "../../components/ProfessionalUlList";
+
+
+// interface IProfessional{
+//   professionalName: string;
+//   professionalJob: string;
+//   professionalContactType: string;
+//   id: number;
+// }
 
 export const UserDashboardPage = () => {
 
   return (
-    <>
+    <Flex w={"100%"} direction={"column"} alignItems={"center"}>
       <Header />
-      <h1>Profissionais Disponíveis</h1>
-      <ul>
-        {professionalList.map((currentProfessional) => (
-          <li key={currentProfessional.id}>
-            <h2>{currentProfessional.professionalName}</h2>
-            <p>{currentProfessional.professionalJob}</p>
-            <h3>{currentProfessional.professionalContactType}</h3>
-            <button>Contatar</button>
-          </li>
-        ))}
-      </ul>
-    </>
+      <UserBar />
+      <Main>
+        <DivServices />
+        <ProfessionalUlList />
+      </Main>
+    </Flex>
   );
 };
