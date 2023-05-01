@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TRegisterFormValues } from "../components/Form/RegisterForm/resgisterFormSchem";
 import { TLoginFormValues } from "../components/Form/LoginForm/loginFormSchema";
@@ -31,7 +31,31 @@ export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({children}: IUserProviderProps) => {
     const [user, setUser] = useState<IUser | null>(null)
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem("@TOKEN");
+        const userId = localStorage.getItem("@USER");
+    
+        const userAutoLogin = async () => {
+          try {
+            const { data } = await api.get<IUser>(`/users/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            setUser(data);
+            navigate("/user_dashbord");
+          } catch (error) {
+            localStorage.removeItem("@TOKEN");
+            localStorage.removeItem("@USER");
+          }
+        };
+    
+        if (token && userId) {
+          userAutoLogin();
+        }
+      }, []);
 
     const userLogin = async (formData: TLoginFormValues, setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
         try {
@@ -40,7 +64,7 @@ export const UserProvider = ({children}: IUserProviderProps) => {
             localStorage.setItem("@TOKEN", response.data.accessToken)
             localStorage.setItem("@USER", JSON.stringify(response.data.user))
             setUser(response.data.user)
-            //navigate("/user_dashboard")
+            navigate("/user_dashboard")
             toast.success("Login realizado com sucesso")
         } catch (error) {
             console.log(error);    
@@ -68,7 +92,7 @@ export const UserProvider = ({children}: IUserProviderProps) => {
         localStorage.removeItem("@TOKEN");
         localStorage.removeItem("@USER");
         setUser(null);
-        // navigate("/")
+        navigate("/")
     }
      
     return(

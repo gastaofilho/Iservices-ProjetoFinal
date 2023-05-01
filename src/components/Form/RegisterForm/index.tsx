@@ -26,7 +26,7 @@ export const RegisterForm = () => {
       <Input type='password' placeholder='Digite novamente sua senha' {...register("confirm")} disabled={loading} error={errors.confirm} />
       <Input type='text' placeholder='Digite seu código' {...register("zipcode")} disabled={loading} error={errors.zipcode} />
       <select {...register("userType")}>
-        <option value="costumer">Contratante</option>
+        <option value="customer">Contratante</option>
         <option value="professional">Profissional</option>
       </select>
       <button type='submit' disabled={loading} >
