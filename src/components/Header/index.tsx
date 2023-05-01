@@ -1,15 +1,15 @@
 import Logo from "../../assets/logo.png";
-import { Button, Flex, Image } from "@chakra-ui/react";
-import { HeaderStyle } from "./HeaderStyle";
+import { Flex, Image } from "@chakra-ui/react";
+import { ButtonStyle } from "../Button/buttonStyle";
+import { theme } from "../../styles/theme";
 
 export const Header = () => {
   return (
-    <HeaderStyle>
-    <Flex border='1px' borderColor='red' alignItems={"center"} justifyContent={"space-between"} p="0, 10%">
-      
-      <Image boxSize='70px' src={Logo} alt='Logotipo' />
-      <Button colorScheme="blue">Sair</Button>
-    </Flex>
-    </HeaderStyle>
+    <>
+      <Flex width={"100%"} mx={"auto"} h={"80px"} maxW={"1350px"} alignItems="center" justifyContent={"space-between"} px="5%" borderBottomWidth={"1px"} borderBottomStyle={"solid"} borderBottomColor={theme.colors.gray[300]}>
+        <Image boxSize={["40px", "40px","70px"]} src={Logo} alt="Logotipo" />
+        <ButtonStyle h={["36px","48px"]}>Sair</ButtonStyle>
+      </Flex>
+    </>
   );
 };
