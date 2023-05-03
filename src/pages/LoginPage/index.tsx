@@ -16,19 +16,23 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { StyledImg } from "../../styles/image";
 import { theme } from "../../styles/theme";
 
+
 export const LoginPage = () => {
 
 
   return (
     <>
       <Header>
+
         <Heading
         fontSize={"large"}
         fontWeight={"700"}
         color={theme.colors.primary}
         >Seja bem vindo a ISERVICES</Heading>
+
       </Header>
-      <LoginForm /> 
+      <LoginForm />
+
       <Flex 
       justifyContent={"center"}
       align={"center"}
@@ -49,6 +53,7 @@ export const LoginPage = () => {
           </Swiper>
         </StyledDiv>
       </Flex>
+
     </>
   );
 };
