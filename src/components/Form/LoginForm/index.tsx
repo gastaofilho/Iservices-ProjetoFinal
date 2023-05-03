@@ -46,7 +46,7 @@ export const LoginForm = () => {
               <Button
                 width={"87vw"}
                 height={"24vh"}
-                bgColor={them}
+                // bgColor={them}
               onClick={registerRedirect}>Cadastre-se</Button>
             </StyledButtonsDiv>
           </StyledFieldset>
