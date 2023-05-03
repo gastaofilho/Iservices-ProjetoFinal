@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormSchema, TLoginFormValues } from './loginFormSchema';
 import { Input } from '../Input';
 import { useNavigate } from 'react-router-dom';
+import { Flex, FormControl } from '@chakra-ui/react';
 
 export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -21,13 +22,26 @@ export const LoginForm = () => {
 }
 
   return(
-  <form onSubmit={handleSubmit(submit)}>
-    <Input type='text' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
-    <Input type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
-    <button type='submit' disabled={loading}>
-      {loading ? "Entrando..." : "Entrar"}
-    </button>
-    <button onClick={registerRedirect}>Cadastre-se</button>
-  </form>
+    <Flex
+    width={"100vw"}
+    height={"30vh"}
+    justifyContent={"center"}
+    alignItems={"center"}
+    >
+      <Flex
+        justifyContent={"center"}
+        alignItems={"center"}
+        mx={"auto"}
+      >
+        <FormControl onSubmit={handleSubmit(submit)}>
+          <Input type='text' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
+          <Input type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
+          <button type='submit' disabled={loading}>
+            {loading ? "Entrando..." : "Entrar"}
+          </button>
+          <button onClick={registerRedirect}>Cadastre-se</button>
+        </FormControl>
+      </Flex>
+    </Flex>
   )
 };

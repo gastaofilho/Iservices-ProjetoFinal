@@ -1,6 +1,4 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
-// import { StyledInputContainer } from '../../../styles/form';
-// import { StyledParagraph } from '../../../styles/typography';
 import { FieldError } from 'react-hook-form'
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement>{
