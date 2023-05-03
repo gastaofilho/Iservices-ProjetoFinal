@@ -26,6 +26,8 @@ interface IUser {
   email: string;
   name: string;
   id: number;
+  userType: string;
+  zipcode: string;
 }
 
 interface IUserLoginResponse {
@@ -50,9 +52,12 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(data)
         setUser(data);
-        navigate("/user_dashbord");
+        if (data.userType==="customer"){
+          navigate("/user_dashboard");
+        }else if(data.userType==="professional"){
+          navigate("/professional_dashboard");
+        }
       } catch (error) {
         localStorage.removeItem("@TOKEN");
         localStorage.removeItem("@USERID");
@@ -61,7 +66,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     };
 
     if (token && userId) {
-      console.log(`${userId} ${token}`)
       userAutoLogin();
     }
   }, []);
@@ -72,11 +76,15 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   ) => {
     try {
       setLoading(true);
-      const response = await api.post<IUserLoginResponse>("/login", formData);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
-      localStorage.setItem("@USERID", JSON.stringify(response.data.user.id));
-      setUser(response.data.user);
-      navigate("/user_dashboard");
+      const { data } = await api.post<IUserLoginResponse>("/login", formData);
+      localStorage.setItem("@TOKEN", data.accessToken);
+      localStorage.setItem("@USERID", JSON.stringify(data.user.id));
+      setUser(data.user);
+      if (data.user.userType==="customer"){
+        navigate("/user_dashboard");
+      }else if(data.user.userType==="professional"){
+        navigate("/professional_dashboard");
+      }
       toast.success("Login realizado com sucesso");
     } catch (error) {
       toast.error("Dados incorretos ou não cadastrados");
@@ -94,7 +102,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       toast.success("Cadastro realizado com sucesso");
       navigate("/")
     } catch (error) {
-      console.log(error);
       toast.error("Dados incorretos favor tentar novamente");
     } finally {
       setLoading(false);
