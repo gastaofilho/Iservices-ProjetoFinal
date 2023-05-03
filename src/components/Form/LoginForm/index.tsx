@@ -5,9 +5,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormSchema, TLoginFormValues } from './loginFormSchema';
 import { useNavigate } from 'react-router-dom';
 import { Button, Flex, FormControl } from '@chakra-ui/react';
-import { StyledButton, StyledButtonsDiv } from '../../../styles/button';
 import { StyledFieldset } from '../../../styles/fieldset';
 import { StyledInput } from '../../../styles/input';
+import { theme } from '../../../styles/theme';
 
 export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export const LoginForm = () => {
 
   return(
     <Flex
-    width={"87vw"}
+    width={"100vw"}
     height={"24vh"}
     justifyContent={"center"}
     alignItems={"center"}
@@ -39,16 +39,25 @@ export const LoginForm = () => {
           <StyledFieldset>
             <StyledInput type='text' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
             <StyledInput type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
-            <StyledButtonsDiv>
-              <StyledButton type='submit' disabled={loading}>
-                {loading ? "Entrando..." : "Entrar"}
-              </StyledButton>
+            <Flex
+            justifyContent={"center"}
+            alignItems={"center"}
+            width={"30rem"}
+            gap={"10px"}
+            >
               <Button
-                width={"87vw"}
-                height={"24vh"}
-                // bgColor={them}
+              width={"7rem"}
+                height={"2rem"}
+                bgColor={theme.colors.primary}
+              type='submit' disabled={loading}>
+                {loading ? "Entrando..." : "Entrar"}
+              </Button>
+              <Button
+                width={"7rem"}
+                height={"2rem"}
+                bgColor={theme.colors.primary}
               onClick={registerRedirect}>Cadastre-se</Button>
-            </StyledButtonsDiv>
+            </Flex>
           </StyledFieldset>
         </FormControl>
       </Flex>

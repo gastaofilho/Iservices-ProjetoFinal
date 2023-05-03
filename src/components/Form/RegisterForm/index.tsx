@@ -3,11 +3,10 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TRegisterFormValues, registerFormSchema } from "./resgisterFormSchem";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { StyledButton } from "../../../styles/button";
-import { Flex, FormControl } from "@chakra-ui/react";
-import { StyledFieldset } from "../../../styles/fieldset";
+import { Button, Flex, FormControl } from "@chakra-ui/react";
 import { StyledSelect } from "../../../styles/select";
 import { StyledInput } from "../../../styles/input";
+import { theme } from "../../../styles/theme";
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +35,13 @@ export const RegisterForm = () => {
       mx={"auto"}
       >
         <FormControl onSubmit={handleSubmit(submit)}>
-          <StyledFieldset>
+          <Flex
+          width={"24rem"}
+          height={"8rem"}
+          direction={"column"}
+          justifyContent={"center"}
+          gap={"10px"}
+          >
             <StyledInput
               type="text"
               placeholder="Digite seu nome"
@@ -76,10 +81,15 @@ export const RegisterForm = () => {
               <option value="customer">Contratante</option>
               <option value="professional">Profissional</option>
             </StyledSelect>
-            <StyledButton type="submit" disabled={loading}>
+          </Flex>
+            <Button
+            width={"24rem"}
+            height={"2rem"}
+            mt={"5rem"}
+            bgColor={theme.colors.primary}
+            type="submit" disabled={loading}>
               {loading ? "Cadastrando..." : "Cadastrar"}
-            </StyledButton>
-          </StyledFieldset>
+            </Button>
         </FormControl>
       </Flex>
     </Flex>
