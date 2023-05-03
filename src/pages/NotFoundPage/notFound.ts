@@ -18,7 +18,8 @@ export const StyledNotFound = styled.div`
   h1,
   h2 {
     font-size: 26px;
-    color: #ffffff;
+    font-weight: 600;
+    color: black;
   }
 
   img {
@@ -31,5 +32,6 @@ export const StyledNotFound = styled.div`
     margin-top: 10px;
     color: var(--primary);
     text-align: center;
+    font-weight: 600;
   }
 `;
