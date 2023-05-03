@@ -12,8 +12,9 @@ import 'swiper/css/mousewheel'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
 import { StyledDiv } from "./StyleLoginPage";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { StyledImg } from "../../styles/image";
+import { theme } from "../../styles/theme";
 
 export const LoginPage = () => {
 
@@ -21,7 +22,11 @@ export const LoginPage = () => {
   return (
     <>
       <Header>
-        <h1>Seja bem vindo a ISERVICES</h1>
+        <Heading
+        fontSize={"large"}
+        fontWeight={"700"}
+        color={theme.colors.primary}
+        >Seja bem vindo a ISERVICES</Heading>
       </Header>
       <LoginForm /> 
       <Flex 
