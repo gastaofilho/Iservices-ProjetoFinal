@@ -13,6 +13,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
 import { StyledDiv } from "./StyleLoginPage";
 import { Flex } from "@chakra-ui/react";
+import { StyledImg } from "../../styles/image";
 
 export const LoginPage = () => {
 
@@ -20,6 +21,7 @@ export const LoginPage = () => {
   return (
     <>
       <Header>
+        <h1>Seja bem vindo a ISERVICES</h1>
       </Header>
       <LoginForm /> 
       <Flex 
@@ -35,10 +37,10 @@ export const LoginPage = () => {
           scrollbar={{ draggable: true }}
           autoplay={{}}
           >
-            <SwiperSlide><img src={Iservices} /></SwiperSlide>
-            <SwiperSlide><img src={Tools} /></SwiperSlide>
-            <SwiperSlide><img src={Conserto} /></SwiperSlide>
-            <SwiperSlide><img src={Apresentacao} /></SwiperSlide>
+            <SwiperSlide><StyledImg src={Iservices} /></SwiperSlide>
+            <SwiperSlide><StyledImg src={Tools} /></SwiperSlide>
+            <SwiperSlide><StyledImg src={Conserto} /></SwiperSlide>
+            <SwiperSlide><StyledImg src={Apresentacao} /></SwiperSlide>
           </Swiper>
         </StyledDiv>
       </Flex>
