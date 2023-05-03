@@ -15,12 +15,18 @@ import { StyledDiv } from "./StyleLoginPage";
 import { Flex } from "@chakra-ui/react";
 import { StyledImg } from "../../styles/image";
 
+
 export const LoginPage = () => {
 
 
   return (
     <>
       <Header>
+
+
+      </Header>
+      <LoginForm />
+
         <h1>Seja bem vindo a ISERVICES</h1>
       </Header>
       <LoginForm /> 
@@ -44,6 +50,7 @@ export const LoginPage = () => {
           </Swiper>
         </StyledDiv>
       </Flex>
+
     </>
   );
 };
