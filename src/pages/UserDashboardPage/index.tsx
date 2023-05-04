@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { Main } from "../../components/Main";
 import { UserBar } from "../../components/UserBar";
@@ -25,7 +25,18 @@ export const UserDashboardPage = () => {
       </Header>
       <UserBar />
       <Main>
-        <DivServices />
+      <Flex
+        w={"100%"}
+        h={"40px"}
+        alignItems="center"
+        justifyContent="flex-start"
+        px={"5%"}
+        bgColor={theme.colors.primary}
+        textColor={theme.colors.branco}
+      >
+        <Heading fontSize={"24px"}>{`Serviços Disponíveis`}</Heading>
+      </Flex>
+
         <ProfessionalUlList />
       </Main>
     </Flex>

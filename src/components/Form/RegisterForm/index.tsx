@@ -3,7 +3,9 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TRegisterFormValues, registerFormSchema } from "./resgisterFormSchem";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../Input";
+
+import { FormInput } from "../Input";
+import { Button } from "@chakra-ui/react";
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
@@ -20,49 +22,45 @@ export const RegisterForm = () => {
     userRegister(formData, setLoading);
   };
   return (
+
     <form onSubmit={handleSubmit(submit)}>
-      <Input
+      <FormInput
         type="text"
         placeholder="Digite seu nome"
         {...register("name")}
-        disabled={loading}
-        error={errors.name}
+        error={errors?.name}
       />
-      <Input
+      <FormInput
         type="email"
         placeholder="Digite seu e-mail"
         {...register("email")}
-        disabled={loading}
         error={errors.email}
       />
-      <Input
+      <FormInput
         type="password"
         placeholder="Digite sua senha"
         {...register("password")}
-        disabled={loading}
         error={errors.password}
       />
-      <Input
+      <FormInput
         type="password"
         placeholder="Digite novamente sua senha"
         {...register("confirm")}
-        disabled={loading}
         error={errors.confirm}
       />
-      <Input
+      <FormInput
         type="text"
         placeholder="Digite seu código"
         {...register("zipcode")}
-        disabled={loading}
         error={errors.zipcode}
       />
       <select {...register("userType")}>
         <option value="customer">Contratante</option>
         <option value="professional">Profissional</option>
       </select>
-      <button type="submit" disabled={loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? "Cadastrando..." : "Cadastrar"}
-      </button>
+      </Button>
     </form>
   );
 };
