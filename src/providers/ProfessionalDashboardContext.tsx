@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { TJobRegisterValues } from "../components/JobRegisterForm/jobRegisterSchema";
 import { api } from "../services/api";
 import { toast } from "react-toastify";

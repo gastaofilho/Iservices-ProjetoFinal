@@ -21,7 +21,7 @@ export const JobRegisterForm = () => {
     resolver: zodResolver(jobRegisterSchema),
   });
 
-  const submit: SubmitHandler<TJobRegisterValues> = (formData: any) => {
+  const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
     console.log(formData)
     jobRegister(formData, setLoading);
   };
@@ -36,10 +36,11 @@ export const JobRegisterForm = () => {
       borderStyle={"solid"}
       borderColor={"red"}
     >
-      <FormControl w={["100%", "300px"]} onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <FormInput
           mb={"15px"}
           type="text"
+          label="Título"
           placeholder="Digite o título"
           {...register("title")}
           error={errors.title}
@@ -50,6 +51,7 @@ export const JobRegisterForm = () => {
         <FormInput
           mb={"15px"}
           type="text"
+          label="Descrição"
           placeholder="Descreva do seu serviço"
           {...register("description")}
           error={errors.description}
@@ -60,6 +62,7 @@ export const JobRegisterForm = () => {
         <FormInput
           mb={"15px"}
           type="text"
+          label="Contato"
           placeholder="Contato"
           {...register("contact")}
           error={errors.contact}
@@ -94,7 +97,7 @@ export const JobRegisterForm = () => {
         >
           {loading ? "Cadastrando..." : "Cadastrar"}
         </Button>
-      </FormControl>
+      </form>
     </Flex>
     </Flex>
   );
