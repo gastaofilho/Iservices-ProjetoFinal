@@ -1,11 +1,10 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import { Header } from "../../components/Header"
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { theme } from "../../styles/theme";
 import { UserBar } from "../../components/UserBar/index";
 import { Main } from "../../components/Main/index";
-import { DivJobRegister } from "../../components/DivJobRegister/index";
 import { JobRegisterForm } from "../../components/JobRegisterForm/index";
 
 
@@ -27,11 +26,30 @@ export const ProfessionalDashboardPage = () => {
     </Header>
     <UserBar/>
     <Main>
-      <DivJobRegister/>
+      <Flex
+        w={"100%"}
+        h={"40px"}
+        alignItems="center"
+        justifyContent="flex-start"
+        px={"5%"}
+        bgColor={theme.colors.primary}
+        textColor={theme.colors.branco}
+      >
+        <Heading fontSize={["14px", "24px"]}>{`Cadastre seu serviço`}</Heading>
+      </Flex>
+
       <JobRegisterForm/>
-      <div>
-        <h1>Pessoas que entraram em contato</h1>
-      </div>
+      <Flex
+        w={"100%"}
+        h={"40px"}
+        alignItems="center"
+        justifyContent="flex-start"
+        px={"5%"}
+        bgColor={theme.colors.primary}
+        textColor={theme.colors.branco}
+      >
+        <Heading fontSize={["14px", "24px"]}>{`Pessoas que entraram em contato`}</Heading>
+      </Flex>
     </Main>
     </>
   );
