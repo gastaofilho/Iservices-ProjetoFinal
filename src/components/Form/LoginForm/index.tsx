@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormSchema, TLoginFormValues } from './loginFormSchema';
 import { useNavigate } from 'react-router-dom';
-import { Button, Flex, FormControl } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import { StyledFieldset } from '../../../styles/fieldset';
 import { StyledInput } from '../../../styles/input';
 import { theme } from '../../../styles/theme';
@@ -35,7 +35,7 @@ export const LoginForm = () => {
         alignItems={"center"}
         mx={"auto"}
       >
-        <FormControl onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(submit)}>
           <StyledFieldset>
             <StyledInput type='text' placeholder='Digite seu e-mail' {...register("email")} disabled={loading} error={errors.email} />
             <StyledInput type='password' placeholder='Digite sua senha' {...register("password")} disabled={loading} error={errors.password} />
@@ -59,7 +59,7 @@ export const LoginForm = () => {
               onClick={registerRedirect}>Cadastre-se</Button>
             </Flex>
           </StyledFieldset>
-        </FormControl>
+        </form>
       </Flex>
     </Flex>
   )
