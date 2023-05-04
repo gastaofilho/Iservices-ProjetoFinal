@@ -8,44 +8,43 @@ interface IProfessionalDashboardProviderProps {
 }
 
 interface IProfessionalDashboardContext {
-    jobList: IJob[];
-    setJobList: React.Dispatch<React.SetStateAction<IJob[]>>;
     jobRegister: (
         formData: TJobRegisterValues,
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
     ) => Promise<void>;
 }
 
-interface IJob {
-    title: string;
-    description: string;
-    contact: string;
-    category: string;
-    id: number;
-}
 
 export const ProfessionalDashboardContext = createContext({} as IProfessionalDashboardContext);
 
 export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboardProviderProps) => {
-    const [jobList, setJobList] = useState<IJob[]>([]);
-
     const jobRegister = async (
         formData: TJobRegisterValues,
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
     ) => {
+        const token = localStorage.getItem("@TOKEN");
+        const UserId = localStorage.getItem("@USERID");
+
+        const newFormData = {...formData, UserId}
+
+        console.log(newFormData)
+
         try {
             setLoading(true);
-            await api.post("/jobs", formData);
+            await api.post("/jobs", newFormData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             toast.success("Serviço cadastrado com sucesso");
-            
+
         } catch (error) {
+            console.log(error)
             toast.error("Dados incorretos favor tentar novamente");
         } finally {
             setLoading(false);
         }
     };
-
-
 
     return (
         <ProfessionalDashboardContext.Provider value={{ jobRegister }}>
