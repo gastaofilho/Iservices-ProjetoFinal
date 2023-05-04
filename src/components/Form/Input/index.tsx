@@ -1,19 +1,18 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 import { FieldError } from 'react-hook-form'
+import { Input, InputProps, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react'
 
-interface IInputProps extends InputHTMLAttributes<HTMLInputElement>{
+interface IInputProps extends InputProps{
   label?: string;
   error?: FieldError;
 }
 
-export const Input = forwardRef(({label, error, disabled, ...rest }: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+export const FormInput = forwardRef(({label, error, ...rest }: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
   return(
-    <div>
-      <div>
-        {label ? <label>{label}</label> : null}
-        <input ref={ref} {...rest} />
-      </div>
-      {error ? <p>{error.message}</p> : null}
-    </div>
+    <FormControl isInvalid={!!error}>
+        {label ? <FormLabel>{label}</FormLabel> : null}
+        <Input ref={ref} {...rest} />
+      {error ? <FormErrorMessage>{error.message}</FormErrorMessage> : null}
+      </FormControl>
   )
 });
