@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TRegisterFormValues, registerFormSchema } from "./resgisterFormSchem";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { FormInput } from "../Input";
 import { Button } from "@chakra-ui/react";
 
@@ -21,6 +22,7 @@ export const RegisterForm = () => {
     userRegister(formData, setLoading);
   };
   return (
+
     <form onSubmit={handleSubmit(submit)}>
       <FormInput
         type="text"

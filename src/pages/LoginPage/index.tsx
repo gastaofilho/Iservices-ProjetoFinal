@@ -44,7 +44,7 @@ export const LoginPage = () => {
           slidesPerView={1}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          autoplay={{}}
+          autoplay={{delay: 3500}}
           >
             <SwiperSlide><StyledImg src={Iservices} /></SwiperSlide>
             <SwiperSlide><StyledImg src={Tools} /></SwiperSlide>
