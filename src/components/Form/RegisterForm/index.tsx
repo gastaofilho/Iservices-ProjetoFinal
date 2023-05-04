@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TRegisterFormValues, registerFormSchema } from "./resgisterFormSchem";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Flex, FormControl } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { StyledSelect } from "../../../styles/select";
 import { StyledInput } from "../../../styles/input";
 import { theme } from "../../../styles/theme";
@@ -34,7 +34,7 @@ export const RegisterForm = () => {
       alignItems={"center"}
       mx={"auto"}
       >
-        <FormControl onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(submit)}>
           <Flex
           width={"24rem"}
           height={"8rem"}
@@ -90,7 +90,7 @@ export const RegisterForm = () => {
             type="submit" disabled={loading}>
               {loading ? "Cadastrando..." : "Cadastrar"}
             </Button>
-        </FormControl>
+        </form>
       </Flex>
     </Flex>
   );
