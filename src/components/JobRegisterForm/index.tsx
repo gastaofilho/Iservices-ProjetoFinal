@@ -1,11 +1,13 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Input } from "../Form/Input/index";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobRegisterSchema, TJobRegisterValues } from "./jobRegisterSchema";
+import { ProfessionalDashboardContext } from "../../providers/ProfessionalDashboardContext";
 
 export const JobRegisterForm = () => {
   const [loading, setLoading] = useState(false);
+  const { jobRegister } = useContext(ProfessionalDashboardContext);
   const {
     register,
     handleSubmit,
@@ -14,8 +16,9 @@ export const JobRegisterForm = () => {
     resolver: zodResolver(jobRegisterSchema),
   });
 
-  const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
-    console.log(formData);
+  const submit: SubmitHandler<TJobRegisterValues> = (formData: any) => {
+    console.log(formData)
+    jobRegister(formData, setLoading);
   };
   return (
     <form onSubmit={handleSubmit(submit)}>
