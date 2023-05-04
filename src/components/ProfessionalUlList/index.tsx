@@ -13,8 +13,7 @@ import { useContext } from "react";
 import { UserDashboardContext } from "../../providers/UserDashboardContext";
 
 export const ProfessionalUlList = () => {
-  const { professionalList } = useContext(UserDashboardContext);
-  
+  const { professionalList, jobList, professionalData } = useContext(UserDashboardContext);
   return (
     <>
       {professionalList.length > 0 ? (
@@ -51,6 +50,7 @@ export const ProfessionalUlList = () => {
                     <Heading py={"20px"} pb={"40px"} fontSize={"12px"}>
                       {currentProfessional.contact}
                     </Heading>
+                    
                     <Button transition={".4s"} fontSize={"12px"}>
                       Contatar
                     </Button>
