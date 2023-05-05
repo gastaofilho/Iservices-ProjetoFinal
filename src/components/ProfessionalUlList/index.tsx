@@ -31,6 +31,8 @@ export const ProfessionalUlList = () => {
             <Wrap spacing={"2.5%"} align="center" justify="center">
               {professionalList.map((currentProfessional) => (
                 <WrapItem key={currentProfessional.id}
+                  display={"flex"}
+                  flexDirection={"column"}
                   w={"260px"}
                   maxW={"354px"}
                   h={"298px"}
@@ -58,7 +60,6 @@ export const ProfessionalUlList = () => {
                       </Button>
                     </Flex>
                   }))}
-
                 </WrapItem>
               ))}
             </Wrap>

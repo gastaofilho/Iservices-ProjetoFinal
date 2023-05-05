@@ -9,8 +9,6 @@ interface IUserDashboardProviderProps {
 interface IUserDashboardContext {
   professionalList: IProfessional[];
   setProfessionalList: React.Dispatch<React.SetStateAction<IProfessional[]>>;
-  jobList: IJob[];
-  setJobList: React.Dispatch<React.SetStateAction<IJob[]>>;
 }
 
 interface IJob {
@@ -35,7 +33,6 @@ export const UserDashboardContext = createContext({} as IUserDashboardContext);
 
 export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps) => {
   const [professionalList, setProfessionalList] = useState<IProfessional[]>([])
-  const [jobList, setJobList] = useState<IJob[]>([])
 
   useEffect(() => {
     const loadProfessionalList = async () => {
@@ -58,7 +55,7 @@ export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps)
   }, []);
 
   return (
-    <UserDashboardContext.Provider value={{ professionalList, setProfessionalList, jobList, setJobList }}>
+    <UserDashboardContext.Provider value={{ professionalList, setProfessionalList }}>
       {children}
     </UserDashboardContext.Provider>
   )
