@@ -3,7 +3,7 @@ import { z } from "zod";
 export const registerFormSchema = z.object({
     name: z.string().nonempty("Nome é obrigatório"),
     email: z.string().nonempty("E-mail é obrigatório").email("Forneça um em-mail válido"),
-    password: z.string().min(7, "A senha precisa conter pelo menos 7 caracteres")
+    password: z.string().min(7, "Senha precisa pelo menos 7 caracteres")
     .regex(/(?=.*?[#?!@$%^&*-])/, "É necessário pelo menos um caracter especial")
     .regex(/(?=.*?[0-9])/, "É necessário pelo menos um número")
     .regex(/(?=.*?[A-Z])/, "É necessário pelo menos uma letra maiúscula")
