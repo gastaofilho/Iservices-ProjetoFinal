@@ -5,11 +5,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormSchema, TLoginFormValues } from "./loginFormSchema";
 import { FormInput } from "../Input";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex, Heading } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  InputGroup,
+  InputRightElement,
+  IconButton,
+} from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { theme } from "../../../styles/theme";
+import React from "react";
 
 export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const { userLogin } = useContext(UserContext);
   const navigate = useNavigate();
   const {
@@ -26,22 +36,25 @@ export const LoginForm = () => {
     navigate("/register");
   };
 
+  const handleClickPassword = () => setShowPassword(!showPassword);
+
   return (
     <>
       <Flex
         flexDirection={"column"}
         w={"320px"}
-        h={["276px", "276px", "320px", "320px"]}
         align={"left"}
         bgColor={theme.colors.secondary}
         px={"2.5%"}
         borderRadius={"8px"}
+        justify={"center"}
       >
         <Heading
           fontSize={"24px"}
           fontWeight={"700"}
           color={theme.colors.white}
-          mb={["0", "0", "0", "15px"]}
+          mb={["0", "0", "0", "10px"]}
+          mt={["0", "0", "0", "15px"]}
         >
           Login
         </Heading>
@@ -57,17 +70,33 @@ export const LoginForm = () => {
             {...register("email")}
             error={errors.email}
           />
-          <FormInput
-            mb={["5px", "5px", "5px", "10px"]}
-            h={"35px"}
-            bgColor={theme.colors.gray[200]}
-            label="Senha"
-            type="password"
-            placeholder="Digite sua senha"
-            _placeholder={{ opacity: 1, color: theme.colors.gray[900] }}
-            {...register("password")}
-            error={errors.password}
-          />
+
+          <InputGroup>
+            <FormInput
+              label="Senha"
+              mb={"15px"}
+              h={"35px"}
+              bgColor={theme.colors.gray[200]}
+              pr="4rem"
+              type={showPassword ? "text" : "password"}
+              placeholder="Digite sua senha"
+              _placeholder={{ opacity: 1, color: theme.colors.gray[900] }}
+              {...register("password")}
+              error={errors.password}
+            />
+            <InputRightElement width="2.5rem" pt={"2.7rem"}>
+              <IconButton
+                h="1.75rem" 
+                bgColor={theme.colors.gray[200]}
+                color = {theme.colors.gray[900]}
+                aria-label="Call Segun"
+                size="sm"
+                onClick={handleClickPassword}
+                icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+              />
+            </InputRightElement>
+          </InputGroup>
+
           <Button
             mt={"5px"}
             mb={["5px", "5px", "5px", "10px"]}
