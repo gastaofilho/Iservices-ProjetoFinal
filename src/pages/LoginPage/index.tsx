@@ -25,18 +25,21 @@ export const LoginPage = () => {
       <Header>
 
         <Heading
-        fontSize={"large"}
+        fontSize={["14px", "18px"]}
         fontWeight={"700"}
         color={theme.colors.primary}
         >Seja bem vindo a ISERVICES</Heading>
 
       </Header>
-      <LoginForm />
 
       <Flex 
+      mt={["15px", "15px", "15px", "150px"]}
+      direction={["column", "column", "column", "row-reverse"]}
       justifyContent={"center"}
       align={"center"}
+        gap={["10px", "10px", "10px", "150px"]}
       >
+      <LoginForm />
         <StyledDiv>
           <Swiper
           modules={[Navigation, Mousewheel, Pagination, Autoplay, A11y]}

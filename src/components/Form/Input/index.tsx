@@ -10,7 +10,7 @@ interface IInputProps extends InputProps{
 export const FormInput = forwardRef(({label, error, ...rest }: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
   return(
     <FormControl isInvalid={!!error}>
-        {label ? <FormLabel>{label}</FormLabel> : null}
+        {label ? <FormLabel fontSize={"12px"} fontWeight={"700"}>{label}</FormLabel> : null}
         <Input ref={ref} {...rest} />
       {error ? <FormErrorMessage>{error.message}</FormErrorMessage> : null}
       </FormControl>

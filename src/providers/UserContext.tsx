@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TRegisterFormValues } from "../components/Form/RegisterForm/resgisterFormSchem";
 import { TLoginFormValues } from "../components/Form/LoginForm/loginFormSchema";
+import { apiViaCep } from "../services/viaCep";
+
 
 interface IUserProviderProps {
   children: React.ReactNode;
@@ -96,9 +98,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     formData: TRegisterFormValues,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+    const str = formData.zipcode.split("-").join("");
+    const response = await apiViaCep.get(`/${str}/json`);
+    const cityName = response.data.localidade
+    console.log(cityName)
+    const newFormData = {name: formData.name, email: formData.email, password: formData.password, zipcode: formData.zipcode, city: cityName, userType: formData.userType}
     try {
       setLoading(true);
-      await api.post("/users", formData);
+      await api.post("/users", newFormData);
       toast.success("Cadastro realizado com sucesso");
       navigate("/")
     } catch (error) {

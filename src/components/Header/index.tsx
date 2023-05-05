@@ -12,7 +12,7 @@ export const Header = ({ children }: IButton) => {
       <Flex
         width={"100%"}
         mx={"auto"}
-        h={"80px"}
+        h={["60px", "80px"]}
         maxW={"1350px"}
         alignItems="center"
         justifyContent={"space-between"}
