@@ -23,9 +23,9 @@ export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboa
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
     ) => {
         const token = localStorage.getItem("@TOKEN");
-        const UserId = localStorage.getItem("@USERID");
+        const userId = localStorage.getItem("@USERID");
 
-        const newFormData = {...formData, UserId}
+        const newFormData = {...formData, userId:Number(userId)}
 
         console.log(newFormData)
 
