@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { TJobRegisterValues } from "../components/JobRegisterForm/jobRegisterSchema";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -23,15 +23,13 @@ export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboa
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
     ) => {
         const token = localStorage.getItem("@TOKEN");
-        const UserId = localStorage.getItem("@USERID");
+        const userId = localStorage.getItem("@USERID");
 
-        const newFormData = {...formData, UserId}
-
-        console.log(newFormData)
+        const newFormData = { ...formData, userId: Number(userId) }
 
         try {
             setLoading(true);
-            await api.post("/jobs", newFormData, {
+            const { data } = await api.post("/jobs", newFormData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

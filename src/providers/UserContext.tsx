@@ -22,6 +22,8 @@ interface IUserContext {
   ) => Promise<void>;
   user: IUser | null;
   userLogout: () => void;
+  currentJob: ICurrentJob | null;
+  setCurrentJob: React.Dispatch<React.SetStateAction<ICurrentJob | null>>;
 }
 
 interface IUser {
@@ -30,6 +32,16 @@ interface IUser {
   id: number;
   userType: string;
   zipcode: string;
+  jobs?: ICurrentJob | null;
+}
+
+interface ICurrentJob {
+  title: string;
+  description: string;
+  contact: string;
+  category: string;
+  id: number;
+  userId: string;
 }
 
 interface IUserLoginResponse {
@@ -40,8 +52,10 @@ interface IUserLoginResponse {
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+  const [currentJob, setCurrentJob] = useState<ICurrentJob | null>(null)
   const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
+  console.log(currentJob)
 
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
@@ -53,12 +67,17 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          params: {
+            _embed: "jobs"
+          }
         });
         setUser(data);
         if (data.userType==="customer"){
           navigate("/user_dashboard");
         }else if(data.userType==="professional"){
           navigate("/professional_dashboard");
+          setCurrentJob(data.jobs)
+          console.log(currentJob)
         }
       } catch (error) {
         localStorage.removeItem("@TOKEN");
@@ -122,7 +141,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ userLogin, userRegister, user, userLogout }}>
+    <UserContext.Provider value={{ userLogin, userRegister, user, userLogout, currentJob }}>
       {children}
     </UserContext.Provider>
   );

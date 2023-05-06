@@ -3,13 +3,15 @@ import { useContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobRegisterSchema, TJobRegisterValues } from "./jobRegisterSchema";
 import { ProfessionalDashboardContext } from "../../providers/ProfessionalDashboardContext";
-import { Button, Flex, FormControl, Select } from "@chakra-ui/react";
+import { Button, Flex, Select } from "@chakra-ui/react";
 import { theme } from "../../styles/theme";
 import { FormInput } from "../Form/Input";
+import { UserContext } from "../../providers/UserContext";
 
 export const JobRegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const { jobRegister } = useContext(ProfessionalDashboardContext);
+  const { currentJob } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -89,16 +91,29 @@ export const JobRegisterForm = () => {
               <option value="all">Serviços Gerais</option>
             </Select>
           </Flex>
-          <Button
-            w={"100%"}
-            h={["36px", "40px"]}
-            bgColor={theme.colors.primary}
-            textColor={theme.colors.white}
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Cadastrando..." : "Cadastrar"}
-          </Button>
+
+          {currentJob.length === 0 ?
+            <Button
+              w={"100%"}
+              h={["36px", "40px"]}
+              bgColor={theme.colors.primary}
+              textColor={theme.colors.white}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Cadastrando..." : "Cadastrar"}
+            </Button> :
+            <Button
+              w={"100%"}
+              h={["36px", "40px"]}
+              bgColor={theme.colors.primary}
+              textColor={theme.colors.white}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Alterando..." : "Alterar"}
+            </Button>
+          }
         </form>
       </Flex>
     </Flex>
