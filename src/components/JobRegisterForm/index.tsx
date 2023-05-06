@@ -8,9 +8,6 @@ import { theme } from "../../styles/theme";
 import { FormInput } from "../Form/Input";
 import { UserContext } from "../../providers/UserContext";
 
-
-
-
 export const JobRegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const { jobRegister } = useContext(ProfessionalDashboardContext);
@@ -24,19 +21,21 @@ export const JobRegisterForm = () => {
   });
 
   const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
-    console.log(formData)
+    console.log(formData);
     jobRegister(formData, setLoading);
   };
   return (
     <Flex justify={"center"}>
       <Flex
-        direction={"column"}
-        w={["100%", "50%"]}
-        h={"300px"}
+        w={["320px", "50%"]}
+        align={"left"}
+        bgColor={theme.colors.secondary}
+        px={"2.5%"}
+        borderRadius={"8px"}
         justify={"center"}
-        borderWidth={"1px"}
-        borderStyle={"solid"}
-        borderColor={"red"}
+        direction={"column"}
+        py={"15px"}
+        my={"10px"}
       >
         <form onSubmit={handleSubmit(submit)}>
           <FormInput
@@ -44,18 +43,19 @@ export const JobRegisterForm = () => {
             type="text"
             label="Título"
             placeholder="Digite o título"
+            _placeholder={{ opacity: 1, color: theme.colors.gray[900] }}
             {...register("title")}
             error={errors.title}
             bgColor={theme.colors.gray[200]}
             color={theme.colors.gray[700]}
             fontWeight={"700"}
           />
-
           <FormInput
             mb={"15px"}
             type="text"
             label="Descrição"
             placeholder="Descreva do seu serviço"
+            _placeholder={{ opacity: 1, color: theme.colors.gray[900] }}
             {...register("description")}
             error={errors.description}
             bgColor={theme.colors.gray[200]}
@@ -67,6 +67,7 @@ export const JobRegisterForm = () => {
             type="text"
             label="Contato"
             placeholder="Contato"
+            _placeholder={{ opacity: 1, color: theme.colors.gray[900] }}
             {...register("contact")}
             error={errors.contact}
             bgColor={theme.colors.gray[200]}
@@ -90,29 +91,29 @@ export const JobRegisterForm = () => {
               <option value="all">Serviços Gerais</option>
             </Select>
           </Flex>
+
           {currentJob.length === 0 ?
             <Button
-              w={["100%", "300px"]}
+              w={"100%"}
               h={["36px", "40px"]}
               bgColor={theme.colors.primary}
-              textColor={theme.colors.branco}
+              textColor={theme.colors.white}
               type="submit"
               disabled={loading}
             >
               {loading ? "Cadastrando..." : "Cadastrar"}
             </Button> :
             <Button
-              w={["100%", "300px"]}
+              w={"100%"}
               h={["36px", "40px"]}
               bgColor={theme.colors.primary}
-              textColor={theme.colors.branco}
+              textColor={theme.colors.white}
               type="submit"
               disabled={loading}
             >
               {loading ? "Alterando..." : "Alterar"}
             </Button>
           }
-
         </form>
       </Flex>
     </Flex>

@@ -146,6 +146,7 @@ export const RegisterForm = () => {
           </FormLabel>
           <Select
             bgColor={theme.colors.gray[200]}
+            color={theme.colors.gray[700]}
             w={"100%"}
             h={"35px"}
             mb={"10px"}
