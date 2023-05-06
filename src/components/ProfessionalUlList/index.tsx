@@ -52,7 +52,7 @@ export const ProfessionalUlList = () => {
                     </Heading>
                     
                     <Button transition={".4s"} fontSize={"12px"}>
-                      Contatar
+                      Contratar
                     </Button>
                   </ListItem>
                 </WrapItem>
