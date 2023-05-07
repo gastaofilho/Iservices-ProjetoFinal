@@ -80,7 +80,7 @@ export const ProfessionalUlList = () => {
           textAlign={"center"}
         >
           <Heading fontSize={"16px"}>
-            Ainda não há profissionais cadastradados
+            Ainda não há profissionais cadastrados
           </Heading>
         </Flex>
       )}

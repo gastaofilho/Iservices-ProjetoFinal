@@ -22,6 +22,7 @@ interface IJob {
 
 interface IProfessional {
   name: string;
+  city: string;
   userType: string;
   userJob: string;
   contact: string;
@@ -46,7 +47,8 @@ export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps)
             _embed: "jobs"
           }
         });
-        setProfessionalList(data.filter((professional) => professional.userType === "professional"));
+        const userCity = localStorage.getItem("@CITY")
+        setProfessionalList(data.filter((professional) => professional.userType === "professional" && professional.city === userCity));
       } catch (error) {
         toast.error("Token inválido");
       }
