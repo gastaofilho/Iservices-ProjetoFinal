@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobRegisterSchema, TJobRegisterValues } from "./jobRegisterSchema";
 import { ProfessionalDashboardContext } from "../../providers/ProfessionalDashboardContext";
@@ -9,6 +9,7 @@ import { FormInput } from "../Form/Input";
 import { UserContext } from "../../providers/UserContext";
 
 export const JobRegisterForm = () => {
+  const userJob = localStorage.getItem("@USERJOB");
   const [loading, setLoading] = useState(false);
   const { jobRegister } = useContext(ProfessionalDashboardContext);
   const { currentJob } = useContext(UserContext);
@@ -19,7 +20,7 @@ export const JobRegisterForm = () => {
   } = useForm<TJobRegisterValues>({
     resolver: zodResolver(jobRegisterSchema),
   });
-
+  //console.log(currentJob);
   const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
     console.log(formData);
     jobRegister(formData, setLoading);
@@ -92,7 +93,7 @@ export const JobRegisterForm = () => {
             </Select>
           </Flex>
 
-          {currentJob.length === 0 ?
+          {currentJob.length === 0 ? (
             <Button
               w={"100%"}
               h={["36px", "40px"]}
@@ -102,7 +103,8 @@ export const JobRegisterForm = () => {
               disabled={loading}
             >
               {loading ? "Cadastrando..." : "Cadastrar"}
-            </Button> :
+            </Button>
+          ) : (
             <Button
               w={"100%"}
               h={["36px", "40px"]}
@@ -113,7 +115,7 @@ export const JobRegisterForm = () => {
             >
               {loading ? "Alterando..." : "Alterar"}
             </Button>
-          }
+          )}
         </form>
       </Flex>
     </Flex>
