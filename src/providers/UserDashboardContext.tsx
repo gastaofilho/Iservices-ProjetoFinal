@@ -48,6 +48,7 @@ export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps)
             _embed: "jobs"
           }
         });
+
         const userCity = localStorage.getItem("@CITY")
         setProfessionalList(data.filter((professional) => professional.userType === "professional" && professional.userCity === userCity));
       } catch (error) {
