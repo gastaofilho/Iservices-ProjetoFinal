@@ -22,11 +22,7 @@ interface IUserContext {
   ) => Promise<void>;
   user: IUser | null;
   userLogout: () => void;
-  //currentJob: ICurrentJob | null;
-  //currentJob: ICurrentJob;
   currentJob: ICurrentJob[];
-  //setCurrentJob: React.Dispatch<React.SetStateAction<ICurrentJob | null>>;
-  //setCurrentJob?: ICurrentJob[];
   setCurrentJob?: React.Dispatch<React.SetStateAction<ICurrentJob>>
   
 }
@@ -37,8 +33,6 @@ interface IUser {
   id: number;
   userType: string;
   zipcode: string;
-  city: string;
-  //jobs?: ICurrentJob | null;
   jobs?: ICurrentJob;
 }
 
@@ -48,7 +42,7 @@ interface ICurrentJob {
   contact: string;
   category: string;
   id: number;
-  userId: number;
+  userId: string;
 }
 
 interface IUserLoginResponse {
@@ -67,7 +61,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     const userId = localStorage.getItem("@USERID");
-    // const userJob = localStorage.getItem("@USERJOB");
+
     const userAutoLogin = async () => {
       try {
         const { data } = await api.get<IUser>(`/users/${userId}`, {
@@ -78,18 +72,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
             _embed: "jobs"
           }
         });
-        localStorage.setItem("@USERJOB", JSON.stringify(data.jobs));
         setUser(data);
+        console.log(data.jobs)
         if (data.userType==="customer"){
           navigate("/user_dashboard");
         }else if(data.userType==="professional"){
           navigate("/professional_dashboard");
-          const userJob = localStorage.getItem("@USERJOB") ;
-          {data.jobs ?
-            //setCurrentJob(data.jobs)
-            setCurrentJob([])
-            : setCurrentJob([])
-          }
+          setCurrentJob(data.jobs)
           console.log(currentJob)
         }
       } catch (error) {
@@ -113,7 +102,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       const { data } = await api.post<IUserLoginResponse>("/login", formData);
       localStorage.setItem("@TOKEN", data.accessToken);
       localStorage.setItem("@USERID", JSON.stringify(data.user.id));
-      localStorage.setItem("@CITY", data.user.city);
       setUser(data.user);
       if (data.user.userType==="customer"){
         navigate("/user_dashboard");
@@ -150,13 +138,12 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const userLogout = () => {
     localStorage.removeItem("@TOKEN");
     localStorage.removeItem("@USERID");
-    localStorage.removeItem("@USERJOB") ;
     setUser(null);
     navigate("/");
   };
 
   return (
-    <UserContext.Provider value={{ userLogin, userRegister, user, userLogout, currentJob }}>
+    <UserContext.Provider value={{ userLogin, userRegister, user, userLogout, currentJob, userJob }}>
       {children}
     </UserContext.Provider>
   );

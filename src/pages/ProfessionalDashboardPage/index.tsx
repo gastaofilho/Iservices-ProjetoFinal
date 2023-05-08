@@ -19,7 +19,7 @@ export const ProfessionalDashboardPage = () => {
          h={["36px", "48px"]}
          onClick={() => userLogout()}
          bgColor={theme.colors.primary}
-         textColor={theme.colors.branco}
+         color={theme.colors.white}
          >
           Sair
         </Button>
@@ -33,7 +33,7 @@ export const ProfessionalDashboardPage = () => {
         justifyContent="flex-start"
         px={"5%"}
         bgColor={theme.colors.primary}
-        textColor={theme.colors.branco}
+        color={theme.colors.white}
       >
         <Heading fontSize={["14px", "24px"]}>{`Cadastre seu serviço`}</Heading>
       </Flex>
@@ -46,7 +46,7 @@ export const ProfessionalDashboardPage = () => {
         justifyContent="flex-start"
         px={"5%"}
         bgColor={theme.colors.primary}
-        textColor={theme.colors.branco}
+        color={theme.colors.white}
       >
         <Heading fontSize={["14px", "24px"]}>{`Pessoas que entraram em contato`}</Heading>
       </Flex>
