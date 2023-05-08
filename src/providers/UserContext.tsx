@@ -37,7 +37,8 @@ interface IUser {
   id: number;
   userType: string;
   zipcode: string;
-  city: string;
+  userCity: string;
+  userState: string;
   //jobs?: ICurrentJob | null;
   jobs?: ICurrentJob;
 }
@@ -90,7 +91,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
             setCurrentJob([])
             : setCurrentJob([])
           }
-          console.log(currentJob)
         }
       } catch (error) {
         localStorage.removeItem("@TOKEN");
@@ -113,7 +113,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       const { data } = await api.post<IUserLoginResponse>("/login", formData);
       localStorage.setItem("@TOKEN", data.accessToken);
       localStorage.setItem("@USERID", JSON.stringify(data.user.id));
-      localStorage.setItem("@CITY", data.user.city);
+      localStorage.setItem("@CITY", data.user.userCity);
       setUser(data.user);
       if (data.user.userType==="customer"){
         navigate("/user_dashboard");
@@ -134,8 +134,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     const str = formData.zipcode.split("-").join("");
     const response = await apiViaCep.get(`/${str}/json`);
     const cityName = response.data.localidade
-    console.log(cityName)
-    const newFormData = {name: formData.name, email: formData.email, password: formData.password, zipcode: formData.zipcode, city: cityName, userType: formData.userType}
+    const stateName = response.data.uf
+    const newFormData = {name: formData.name, email: formData.email, password: formData.password, zipcode: formData.zipcode, userCity: cityName, userState: stateName, userType: formData.userType}
     try {
       setLoading(true);
       await api.post("/users", newFormData);
