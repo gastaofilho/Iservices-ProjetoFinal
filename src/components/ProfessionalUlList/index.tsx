@@ -1,7 +1,6 @@
 import {
   Wrap,
   WrapItem,
-  ListItem,
   UnorderedList,
   Heading,
   Button,
@@ -12,7 +11,7 @@ import { useContext } from "react";
 import { UserDashboardContext } from "../../providers/UserDashboardContext";
 
 export const ProfessionalUlList = () => {
-  const { professionalList, jobList, professionalData } = useContext(UserDashboardContext);
+  const { professionalList } = useContext(UserDashboardContext);
   return (
     <>
       {professionalList.length > 0 ? (
@@ -30,39 +29,46 @@ export const ProfessionalUlList = () => {
           >
             <Wrap spacing={"2.5%"} align="center" justify="center">
               {professionalList.map((currentProfessional) => (
-                <Flex key={currentProfessional.id}>
-                  <ListItem 
-                    w={"260px"}
-                    maxW={"354px"}
-                    h={"298px"}
-                    bgColor={theme.colors.secondary}
-                    borderRadius={"8px"}
-                    px={"10px"}
-                    py={"10px"}
-                  >
-                    <Heading fontSize={"16px"}>
-                      {currentProfessional.name}
-                    </Heading>
-                    <Heading py={"20px"} fontSize={"14px"}>
-                      {currentProfessional.userJob}
-                    </Heading>
-                    <Heading py={"20px"} pb={"40px"} fontSize={"12px"}>
-                      {currentProfessional.contact}
-                    </Heading>
-                    
-                    <Button transition={".4s"} fontSize={"12px"}>
-                      Contatar
-                    </Button>
-                  </ListItem>
-                </Flex>
+
+                <WrapItem key={currentProfessional.id}
+                  display={"flex"}
+                  flexDirection={"column"}
+                  w={"260px"}
+                  maxW={"354px"}
+                  h={"298px"}
+                  bgColor={theme.colors.secondary}
+                  borderRadius={"8px"}
+                  px={"10px"}
+                  py={"10px"}
+                >
+                  <Heading fontSize={"16px"}>
+                    {currentProfessional.name}
+                  </Heading>
+                  {currentProfessional.jobs?.map((job => {
+                    return <Flex direction={"column"} gap={"20px"} key={job.id}>
+                      <Heading fontSize={"14px"}>
+                        {job.title}
+                      </Heading>
+                      <Heading fontSize={"14px"}>
+                        {job.description}
+                      </Heading>
+                      <Heading fontSize={"14px"}>
+                        {job.contact}
+                      </Heading>
+                      <Button transition={".4s"} fontSize={"12px"}>
+                        Contatar
+                      </Button>
+                    </Flex>
+                  }))}
+                </WrapItem>
               ))}
             </Wrap>
           </UnorderedList>
         </Flex>
       ) : (
         <Flex
-        mt={"20px"}
-        mx={"auto"}
+          mt={"20px"}
+          mx={"auto"}
           w={"auto"}
           maxW={"354px"}
           h={"298px"}
@@ -74,7 +80,7 @@ export const ProfessionalUlList = () => {
           textAlign={"center"}
         >
           <Heading fontSize={"16px"}>
-            Ainda não há profissionais cadastradados
+            Ainda não há profissionais cadastrados
           </Heading>
         </Flex>
       )}

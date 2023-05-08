@@ -16,8 +16,8 @@ export const UserBar = () => {
         px={"5%"}
       >
         <Heading
-          fontSize={["18px", "24px"]}
-        >{`Olá ${user?.name}, seja bem-vindo!`}</Heading>
+          fontSize={["16px", "24px"]}
+        >{`Olá ${user?.name} de ${user?.userCity} estado de ${user?.userState}, seja bem-vindo!`}</Heading>
       </Flex>
     </>
   );

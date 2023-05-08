@@ -4,50 +4,81 @@ import { api } from "../services/api";
 import { toast } from "react-toastify";
 
 interface IProfessionalDashboardProviderProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 interface IProfessionalDashboardContext {
-    jobRegister: (
-        formData: TJobRegisterValues,
-        setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    ) => Promise<void>;
+  jobRegister: (
+    formData: TJobRegisterValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
+  jobUpdate: (
+    formData: TJobRegisterValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
 }
 
+export const ProfessionalDashboardContext = createContext(
+  {} as IProfessionalDashboardContext
+);
 
-export const ProfessionalDashboardContext = createContext({} as IProfessionalDashboardContext);
+export const ProfessionalDashboardProvider = ({
+  children,
+}: IProfessionalDashboardProviderProps) => {
 
-export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboardProviderProps) => {
-    
-    const jobRegister = async (
-        formData: TJobRegisterValues,
-        setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    ) => {
-        const token = localStorage.getItem("@TOKEN");
-        const UserId = localStorage.getItem("@USERID");
+  const jobRegister = async (
+    formData: TJobRegisterValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    const token = localStorage.getItem("@TOKEN");
+    const userId = localStorage.getItem("@USERID");
 
-        const newFormData = {...formData, UserId}
+    const newFormData = { ...formData, userId: Number(userId) };
 
-        try {
-            setLoading(true);
-            await api.post("/jobs", newFormData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });            
-            
-            toast.success("Serviço cadastrado com sucesso");
+    try {
+      setLoading(true);
+      const { data } = await api.post("/jobs", newFormData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Serviço cadastrado com sucesso");
+    } catch (error) {
+      toast.error("Dados incorretos favor tentar novamente");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        } catch (error) {
-            toast.error("Dados incorretos favor tentar novamente");
-        } finally {
-            setLoading(false);
-        }
-    };    
+  const jobUpdate = async (
+    formData: TJobRegisterValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    const token = localStorage.getItem("@TOKEN");
+    const userId = localStorage.getItem("@USERID");
 
-    return (
-        <ProfessionalDashboardContext.Provider value={{ jobRegister }}>
-            {children}
-        </ProfessionalDashboardContext.Provider>
-    )
-}
+    const newFormData = { ...formData, userId: Number(userId) };
+
+    try {
+      setLoading(true);
+      const { data } = await api.put("/jobs", newFormData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Serviço cadastrado com sucesso");
+    } catch (error) {
+      toast.error("Dados incorretos favor tentar novamente");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+  return (
+    <ProfessionalDashboardContext.Provider value={{ jobRegister, jobUpdate }}>
+      {children}
+    </ProfessionalDashboardContext.Provider>
+  );
+};

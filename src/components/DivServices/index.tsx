@@ -11,7 +11,7 @@ export const DivServices = () => {
         justifyContent="flex-start"
         px={"5%"}
         bgColor={theme.colors.primary}
-        textColor={theme.colors.branco}
+        textColor={theme.colors.white}
       >
         <Heading fontSize={"24px"}>{`Serviços Disponíveis`}</Heading>
       </Flex>

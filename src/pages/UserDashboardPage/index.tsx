@@ -17,7 +17,7 @@ export const UserDashboardPage = () => {
          h={["36px", "48px"]}
          onClick={() => userLogout()}
          bgColor={theme.colors.primary}
-         textColor={theme.colors.branco}
+         textColor={theme.colors.white}
          >
           Sair
         </Button>
@@ -31,7 +31,7 @@ export const UserDashboardPage = () => {
         justifyContent="flex-start"
         px={"5%"}
         bgColor={theme.colors.primary}
-        textColor={theme.colors.branco}
+        color={theme.colors.white}
       >
         <Heading fontSize={"24px"}>{`Serviços Disponíveis`}</Heading>
       </Flex>
