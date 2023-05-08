@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobRegisterSchema, TJobRegisterValues } from "./jobRegisterSchema";
 import { ProfessionalDashboardContext } from "../../providers/ProfessionalDashboardContext";
-import { Button, Flex, FormControl, Select } from "@chakra-ui/react";
+import { Button, Flex, Select } from "@chakra-ui/react";
 import { theme } from "../../styles/theme";
 import { FormInput } from "../Form/Input";
 
@@ -22,7 +22,6 @@ export const JobRegisterForm = () => {
   });
 
   const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
-    console.log(formData)
     jobRegister(formData, setLoading);
   };
   return (

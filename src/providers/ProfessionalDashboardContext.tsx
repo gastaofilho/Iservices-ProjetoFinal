@@ -18,6 +18,7 @@ interface IProfessionalDashboardContext {
 export const ProfessionalDashboardContext = createContext({} as IProfessionalDashboardContext);
 
 export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboardProviderProps) => {
+    
     const jobRegister = async (
         formData: TJobRegisterValues,
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -27,24 +28,22 @@ export const ProfessionalDashboardProvider = ({ children }: IProfessionalDashboa
 
         const newFormData = {...formData, UserId}
 
-        console.log(newFormData)
-
         try {
             setLoading(true);
             await api.post("/jobs", newFormData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            });
+            });            
+            
             toast.success("Serviço cadastrado com sucesso");
 
         } catch (error) {
-            console.log(error)
             toast.error("Dados incorretos favor tentar novamente");
         } finally {
             setLoading(false);
         }
-    };
+    };    
 
     return (
         <ProfessionalDashboardContext.Provider value={{ jobRegister }}>

@@ -7,7 +7,6 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-//import { professionalList } from "../../pages/UserDashboardPage/ProfessionalList";
 import { theme } from "../../styles/theme";
 import { useContext } from "react";
 import { UserDashboardContext } from "../../providers/UserDashboardContext";
@@ -31,7 +30,7 @@ export const ProfessionalUlList = () => {
           >
             <Wrap spacing={"2.5%"} align="center" justify="center">
               {professionalList.map((currentProfessional) => (
-                <WrapItem key={currentProfessional.id}>
+                <Flex key={currentProfessional.id}>
                   <ListItem 
                     w={"260px"}
                     maxW={"354px"}
@@ -55,7 +54,7 @@ export const ProfessionalUlList = () => {
                       Contatar
                     </Button>
                   </ListItem>
-                </WrapItem>
+                </Flex>
               ))}
             </Wrap>
           </UnorderedList>

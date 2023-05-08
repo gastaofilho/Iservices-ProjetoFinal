@@ -7,7 +7,6 @@ import { theme } from "./styles/theme";
 export const App = () => {
   return (
     <ChakraBaseProvider theme={theme}>
-      {/* <UserDashboardPage /> */}
     <UserProvider>
       <Router />
     </UserProvider>

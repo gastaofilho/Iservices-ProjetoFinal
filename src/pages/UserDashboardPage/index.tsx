@@ -2,7 +2,6 @@ import { Button, Flex, Heading } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { Main } from "../../components/Main";
 import { UserBar } from "../../components/UserBar";
-import { DivServices } from "../../components/DivServices";
 import { ProfessionalUlList } from "../../components/ProfessionalUlList";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";

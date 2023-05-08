@@ -13,7 +13,6 @@ interface IUserDashboardContext {
   setJobList: React.Dispatch<React.SetStateAction<IJob[]>>;
   professionalData: IProfessionalData[];
   loadJobList: any;
-  // setProfessionalData: React.Dispatch<React.SetStateAction<IProfessional[]>>;
 }
 
 interface IProfessionalData extends IJob, IProfessional {
@@ -52,17 +51,14 @@ export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps)
   
   const loadJobList = async (userId:any) => {
     const token = localStorage.getItem("@TOKEN");
-    console.log(userId)
     try {
       const { data } = await api.get<IJob[]>(`/jobs/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data)
       setJobList(data);
     } catch (error) {
-      console.log(error)
       toast.error("Token inválido");
     }
   };
@@ -76,7 +72,10 @@ export const UserDashboardProvider = ({ children }: IUserDashboardProviderProps)
             Authorization: `Bearer ${token}`,
           },
         });
+        
         setProfessionalList(data.filter((professional) => professional.userType === "professional"));
+        
+        
         professionalList.map((professional) => (loadJobList(professional.id)))
       } catch (error) {
         toast.error("Token inválido");
