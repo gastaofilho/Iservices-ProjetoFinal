@@ -15,7 +15,7 @@ export const RegisterPage = () => {
           h={["36px", "48px"]}
           onClick={() => navigate("/")}
           bgColor={theme.colors.primary}
-          textColor={theme.colors.branco}
+          textColor={theme.colors.white}
         >
           Voltar
         </Button>
