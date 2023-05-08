@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobRegisterSchema, TJobRegisterValues } from "./jobRegisterSchema";
 import { ProfessionalDashboardContext } from "../../providers/ProfessionalDashboardContext";
@@ -20,9 +20,7 @@ export const JobRegisterForm = () => {
   } = useForm<TJobRegisterValues>({
     resolver: zodResolver(jobRegisterSchema),
   });
-  //console.log(currentJob);
   const submit: SubmitHandler<TJobRegisterValues> = (formData) => {
-    console.log(formData);
     jobRegister(formData, setLoading);
   };
   return (

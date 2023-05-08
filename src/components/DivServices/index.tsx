@@ -1,5 +1,4 @@
 import { Flex, Heading } from "@chakra-ui/react";
-//import { DivServicesStyle } from "./DivServicesStyle";
 import { theme } from "../../styles/theme";
 
 export const DivServices = () => {

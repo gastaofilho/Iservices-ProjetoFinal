@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { TJobRegisterValues } from "../components/JobRegisterForm/jobRegisterSchema";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -44,7 +44,6 @@ export const ProfessionalDashboardProvider = ({
       });
       toast.success("Serviço cadastrado com sucesso");
     } catch (error) {
-      console.log(error);
       toast.error("Dados incorretos favor tentar novamente");
     } finally {
       setLoading(false);
@@ -69,7 +68,6 @@ export const ProfessionalDashboardProvider = ({
       });
       toast.success("Serviço cadastrado com sucesso");
     } catch (error) {
-      console.log(error);
       toast.error("Dados incorretos favor tentar novamente");
     } finally {
       setLoading(false);

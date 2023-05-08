@@ -1,4 +1,4 @@
-import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { FieldError } from 'react-hook-form'
 import { Input, InputProps, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react'
 

@@ -22,11 +22,7 @@ interface IUserContext {
   ) => Promise<void>;
   user: IUser | null;
   userLogout: () => void;
-  //currentJob: ICurrentJob | null;
-  //currentJob: ICurrentJob;
   currentJob: ICurrentJob[];
-  //setCurrentJob: React.Dispatch<React.SetStateAction<ICurrentJob | null>>;
-  //setCurrentJob?: ICurrentJob[];
   setCurrentJob?: React.Dispatch<React.SetStateAction<ICurrentJob>>
   
 }
@@ -39,7 +35,6 @@ interface IUser {
   zipcode: string;
   userCity: string;
   userState: string;
-  //jobs?: ICurrentJob | null;
   jobs?: ICurrentJob;
 }
 
@@ -68,7 +63,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     const userId = localStorage.getItem("@USERID");
-    // const userJob = localStorage.getItem("@USERJOB");
     const userAutoLogin = async () => {
       try {
         const { data } = await api.get<IUser>(`/users/${userId}`, {
@@ -87,7 +81,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           navigate("/professional_dashboard");
           const userJob = localStorage.getItem("@USERJOB") ;
           {data.jobs ?
-            //setCurrentJob(data.jobs)
             setCurrentJob([])
             : setCurrentJob([])
           }
